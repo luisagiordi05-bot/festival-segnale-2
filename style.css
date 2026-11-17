@@ -1,13 +1,15 @@
-/* Segnale: esempio completo della consegna su Home e Programma. */
+/* Segnale: foglio di stile completo e aggiornato */
 
-/* Valori condivisi: le regole interessate li richiamano con var(). */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@300;400;700&display=swap');
+
 :root {
-  --colore-primario: #234c78;
-  --colore-primario-scuro: #163454;
+  --colore-bottoni: #2D13B2;
+  --colore-bottoni-scuro: #1c0a72;
+  --colore-titoli: #6E0001;
   --colore-sfondo: #f5f2e9;
-  --colore-testo: #202923;
-  --font-testo: Arial, Helvetica, sans-serif;
-  --font-titoli: Georgia, "Times New Roman", serif;
+  --colore-testo: #000000;
+  --font-testo: 'Work Sans', sans-serif;
+  --font-titoli: 'Archivo Black', sans-serif;
 }
 
 * {
@@ -19,12 +21,13 @@ body {
   background: var(--colore-sfondo);
   color: var(--colore-testo);
   font-family: var(--font-testo);
+  font-weight: 300;
   font-size: 1rem;
   line-height: 1.6;
 }
 
 a {
-  color: var(--colore-primario);
+  color: var(--colore-bottoni);
 }
 
 a:hover {
@@ -43,14 +46,14 @@ a:focus {
 
 .site-header {
   padding: 1.25rem 0;
-  border-bottom: 4px solid var(--colore-primario);
+  border-bottom: 4px solid #6E0001;
 }
 
 .brand {
   display: inline-block;
-  color: var(--colore-testo);
-  font-size: 1.75rem;
-  font-weight: bold;
+  color: var(--colore-titoli);
+  font-family: var(--font-titoli);
+  font-size: 2rem;
   line-height: 1.2;
   text-decoration: none;
 }
@@ -60,18 +63,35 @@ a:focus {
   margin-top: 0.25rem;
   font-size: 0.875rem;
   font-weight: normal;
+  font-family: var(--font-testo);
+  color: var(--colore-testo);
 }
 
+/* Navigazione con riquadri arrotondati, bordo blu e sfondo coordinato */
 nav {
   margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 nav a {
   display: inline-block;
-  margin-right: 1rem;
-  padding: 0.25rem 0;
+  padding: 0.5rem 1.25rem;
+  border: 2px solid var(--colore-bottoni);
+  border-radius: 2rem; /* Riquadro arrotondato a pillola */
+  background: var(--colore-sfondo); /* Sfondo uguale a quello del sito */
+  color: var(--colore-bottoni); /* Testo dello stesso colore blu del bordo */
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
+nav a:hover {
+  background: var(--colore-bottoni);
+  color: #ffffff; /* Inverte i colori leggermente al passaggio del mouse per un bell'effetto */
+  text-decoration: none;
+}
 
 .intro {
   padding: 3rem 0 1rem;
@@ -81,29 +101,18 @@ nav a {
 .event-meta {
   color: #46564b;
   font-size: 0.875rem;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 h1,
 h2,
 h3 {
   font-family: var(--font-titoli);
+  color: var(--colore-titoli);
+  font-size: 2.25rem;
   line-height: 1.2;
-}
-
-h1 {
-  max-width: 18ch;
-  margin: 0.75rem 0 1.25rem;
-  font-size: 2.5rem;
-}
-
-h2 {
-  font-size: 1.75rem;
-}
-
-h3 {
-  margin: 0.5rem 0 0.75rem;
-  font-size: 1.375rem;
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .lead {
@@ -120,14 +129,14 @@ h3 {
   margin-top: 1rem;
   padding: 0.75rem 1.25rem;
   border-radius: 0.5rem;
-  background: var(--colore-primario);
+  background: #2D13B2;
   color: #ffffff;
-  font-weight: bold;
+  font-weight: 700;
   text-decoration: none;
 }
 
 .button-link:hover {
-  background: var(--colore-primario-scuro);
+  background: var(--colore-bottoni-scuro);
 }
 
 .content-section {
@@ -151,7 +160,6 @@ h3 {
   margin-bottom: 0.5rem;
 }
 
-/* Disposizione di base: una colonna. */
 .event-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -162,13 +170,14 @@ h3 {
   overflow: hidden;
   border: 1px solid #b7c0b7;
   border-radius: 0.75rem;
-  background: #ffffff;
+  background: var(--colore-sfondo);
 }
 
 .event-card img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 220px;
+  object-fit: cover;
 }
 
 .event-body {
@@ -179,6 +188,7 @@ h3 {
   margin-bottom: 0;
   color: #46564b;
   font-size: 0.875rem;
+  font-weight: 700;
 }
 
 .site-footer {
@@ -201,25 +211,24 @@ h3 {
   top: 1rem;
 }
 
-/* Da 600 px: due colonne. */
 @media (min-width: 600px) {
   .event-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Da 1024 px: tre colonne. Questa regola segue quella da 600 px. */
 @media (min-width: 1024px) {
   .event-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* Stili per la pagina Info e luoghi */
+/* Stili per la pagina Info e luoghi e galleria con bottoni sovrapposti */
 #galleria-sedi {
   width: 100%;
   max-width: 54rem;
   margin-inline: auto;
+  position: relative;
 }
 
 #galleria-sedi .swiper-slide {
@@ -240,26 +249,41 @@ h3 {
 }
 
 .galleria-comandi {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  margin: 1rem 0 2rem;
+  justify-content: space-between;
+  padding: 0 1rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 10;
 }
 
 .galleria-comandi button {
-  min-height: 44px;
-  padding: 0.75rem 1rem;
-  border: 2px solid var(--colore-primario-scuro);
-  border-radius: 0.5rem;
+  pointer-events: auto;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 0;
+  border: 2px solid var(--colore-bottoni-scuro);
+  border-radius: 50%;
   color: #ffffff;
-  background: var(--colore-primario-scuro);
-  font: inherit;
+  background: #2D13B2;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1;
+  display: grid;
+  place-content: center;
   cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  opacity: 0.75;
+  transition: opacity 0.3s ease, background 0.3s ease;
 }
 
 .galleria-comandi button:hover {
-  background: var(--colore-primario);
+  background: var(--colore-bottoni-scuro);
+  opacity: 1;
 }
 
 .galleria-comandi button:focus-visible,
@@ -280,11 +304,23 @@ a:focus-visible {
 }
 
 .indirizzi-sedi {
-  padding-left: 1.25rem;
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
 }
 
 .indirizzi-sedi li {
-  margin-bottom: 1rem;
+  padding: 1.25rem;
+  border: 3px solid #6E0001;
+  border-radius: 1rem;
+  background: var(--colore-sfondo);
+}
+
+.indirizzi-sedi strong {
+  color: #6E0001;
 }
 
 @media (max-width: 599px) {
